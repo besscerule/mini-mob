@@ -1,9 +1,23 @@
-import { TestBed } from '@angular/core/testing';
+import {
+  waitForAsync,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
+import {
+  BrowserDynamicTestingModule,
+  platformBrowserDynamicTesting
+}
+  from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
+TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+
+describe(`AppComponent'`, (() => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -12,17 +26,16 @@ describe('AppComponent', () => {
         AppComponent
       ],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+  it(`creates App component`, () => {
+    expect(component).toBeDefined();
   });
 
-  it(`should have as title 'mini-mob'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('mini-mob');
+  it(`should have title 'mini-mob'`, () => {
+    expect(component.title).toEqual('mini-mob');
   });
-});
+}));
